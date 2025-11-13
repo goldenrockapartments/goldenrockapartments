@@ -587,7 +587,7 @@
             height: 40px;
             margin-bottom: 1rem;
         }
-        /* Map Section */
+        /* Map Section - Two Location Cards */
         .map-section {
             padding: 120px 0;
             background: var(--light-gray);
@@ -607,12 +607,39 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .map-container {
-            max-width: 100%;
-            height: 450px;
+        .location-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .location-card {
+            background: var(--white);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .location-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        .location-card h3 {
+            padding: 20px 20px 10px;
+            font-size: 1.6rem;
+            color: var(--ultramarine-blue);
+            text-align: center;
+        }
+        .location-card p {
+            text-align: center;
+            color: var(--gray);
+            padding: 0 20px 15px;
+            font-size: 1rem;
+        }
+        .location-card iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
         }
         /* Footer */
         .footer {
@@ -729,7 +756,7 @@
                 grid-template-columns: 1fr;
             }
             .footer-content {
-                grid-template-columns: 1fr;
+                grid-template-columns:1fr;
             }
             .modal-content {
                 width: 95%;
@@ -737,6 +764,9 @@
             }
             .modal-carousel {
                 height: 300px;
+            }
+            .location-cards {
+                grid-template-columns: 1fr;
             }
         }
         @media (max-width: 480px) {
@@ -790,14 +820,13 @@
             </ul>
         </div>
     </nav>
-
     <main id="app">
         <section id="home" class="hero">
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
                         <h1>Find Your Perfect Apartment</h1>
-                        <p>Browse my curated selection of apartments at Golden Rock, designed for comfort and convenience in Barbados.</p>
+                        <p>Browse my curated selection of apartments at Golden Rock and Dash Valley Hanson Heights, designed for comfort and convenience in Barbados.</p>
                         <div class="hero-buttons">
                             <a href="#listings" class="btn-primary">Browse Listings</a>
                             <a href="#appointment" class="btn-secondary">Check Availability</a>
@@ -814,7 +843,7 @@
             <div class="container">
                 <div class="section-header">
                     <h2>My Apartment Listings</h2>
-                    <p>Browse my available apartments at Golden Rock</p>
+                    <p>Browse my available apartments at Golden Rock and Dash Valley Hanson Heights</p>
                 </div>
                 <div class="filters">
                     <select id="filter-type">
@@ -860,37 +889,25 @@
         <section id="appointment" class="appointment-section">
             <div class="container">
                 <h2>Check Real-Time Availability</h2>
-                <p>View the live multi-calendar for all Golden Rock Apartments on Airbnb.</p>
-
-                <!-- Airbnb Logo + CTA -->
+                <p>View the live multi-calendar for all apartments on Airbnb.</p>
                 <div style="text-align:center; margin:2rem 0;">
-                    <a href="https://www.airbnb.com/multicalendar/1553675077781442429"
-                       target="_blank"
-                       rel="noopener"
-                       class="airbnb-cta">
-                        <!-- Airbnb SVG Logo -->
+                    <a href="https://www.airbnb.com/multicalendar/1553675077781442429" target="_blank" rel="noopener" class="airbnb-cta">
                         <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Airbnb">
                             <path d="M59.9999 0C47.9999 0 38.3999 9.6 38.3999 21.6C38.3999 33.6 47.9999 43.2 59.9999 43.2C71.9999 43.2 81.5999 33.6 81.5999 21.6C81.5999 9.6 71.9999 0 59.9999 0ZM59.9999 36C52.3999 36 46.7999 30.4 46.7999 22.8C46.7999 15.2 52.3999 9.6 59.9999 9.6C67.5999 9.6 73.1999 15.2 73.1999 22.8C73.1999 30.4 67.5999 36 59.9999 36Z" fill="#FF5A5F"/>
                             <path d="M0 20.4C0 9.2 9.2 0 20.4 0H99.6C110.8 0 120 9.2 120 20.4V20.4C120 31.6 110.8 40.8 99.6 40.8H20.4C9.2 40.8 0 31.6 0 20.4V20.4Z" fill="#FF5A5F"/>
-                            <path d="M20.4 8.4C13.8 8.4 8.4 13.8 8.4 20.4C8.4 27 13.8 32.4 20.4 32.4C27 32.4 32.4 27 32.4 20.4C32.4 13.8 27 8.4 20.4 8.4Z" fill="white"/>
+                            <path d="M20.4 8.4C13.8 8.4 8.4 13.8 8.4 20.4C8.4 27 13.8 32.4 20.4 32.4C27 32.Maintain 32.4 27 32.4 20.4C32.4 13.8 27 8.4 20.4 8.4Z" fill="white"/>
                         </svg>
-
                         <div style="margin-top:1rem;">
-                            <span class="btn-primary"
-                                  style="display:inline-block; padding:0.9rem 2rem; font-size:1.1rem;">
+                            <span class="btn-primary" style="display:inline-block; padding:0.9rem 2rem; font-size:1.1rem;">
                                 Open Airbnb Calendar
                             </span>
                         </div>
                     </a>
                 </div>
-
-                <!-- Contact Fallback -->
                 <div style="text-align:center; margin-top:2rem;">
                     <p style="color:var(--gray); max-width:600px; margin:0 auto;">
-                        Need help? Call <a href="tel:+12468214821"
-                                           style="color:var(--forest-green); text-decoration:none;">+1 (246) 821-4821</a>
-                        or <a href="mailto:goldenrockapartments@gmail.com"
-                              style="color:var(--forest-green); text-decoration:none;">email us</a>.
+                        Need help? Call <a href="tel:+12468214821" style="color:var(--forest-green); text-decoration:none;">+1 (246) 821-4821</a>
+                        or <a href="mailto:goldenrockapartments@gmail.com" style="color:var(--forest-green); text-decoration:none;">email us</a>.
                     </p>
                 </div>
             </div>
@@ -976,13 +993,35 @@
             </div>
         </section>
 
+        <!-- TWO LOCATION CARDS -->
         <section id="map" class="map-section">
             <div class="container">
-                <h2>Our Location</h2>
-                <p>Find Golden Rock in the heart of Barbados.</p>
-                <div class="map-container">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0249893570794!2d-59.5870831!3d13.097602799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c43f694d2ed04cb%3A0x8405aa17c465a7f2!2sGolden%20Rock%2C%20Bridgetown%2C%20Saint%20Michael%20Barbados!5e0!3m2!1sen!2s!4v1763060140262!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                </div>
-           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d541.4252287634114!2d-59.56949011196819!3d13.108393670133692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c43f6a6733be6f5%3A0x503706cf92497755!2sHanson%20Heights%2C%20Bridgetown%20Barbados!5e0!3m2!1sen!2s!4v1763061660546!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <h2>Our Locations</h2>
+                <p>Explore our apartments in prime locations across Barbados.</p>
+                <div class="location-cards">
+                    <!-- Golden Rock -->
+                    <div class="location-card">
+                        <h3>Golden Rock Apartments</h3>
+                        <p>Golden Rock, Bridgetown, St. Michael</p>
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0249893570794!2d-59.5870831!3d13.097602799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c43f694d2ed04cb%3A0x8405aa17c465a7f2!2sGolden%20Rock%2C%20Bridgetown%2C%20Saint%20Michael%20Barbados!5e0!3m2!1sen!2s!4v1763060140262!5m2!1sen!2s" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <!-- Dash Valley Hanson Heights -->
+                    <div class="location-card">
+                        <h3>Dash Valley Hanson Heights</h3>
+                        <p>Hanson Heights, St. George, Barbados</p>
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d541.4252287634114!2d-59.56949011196819!3d13.108393670133692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c43f6a6733be6f5%3A0x503706cf92497755!2sHanson%20Heights%2C%20Bridgetown%20Barbados!5e0!3m2!1sen!2s!4v1763061660546!5m2!1sen!2s" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1023,7 +1062,7 @@
                         <h3>Contact</h3>
                         <ul>
                             <li><a href="mailto:info@goldenrockapartments.com">info@goldenrockapartments.com</a></li>
-                            <li><a href="tel:+12468214821">+1 (234) 821-4821</a></li>
+                            <li><a href="tel:+12468214821">+1 (246) 821-4821</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1034,298 +1073,282 @@
         </footer>
     </main>
 
-   <script>
-    // Sample data – **ADD THE NEW OBJECT ABOVE TO THIS ARRAY**
-    const properties = [
-        {
-            id: 1,
-            title: "Golden Rock Apartments 1",
-            location: "Golden Rock, Barbados",
-            price: "$225 BBD",
-            type: "apartment",
-            bedrooms: 1,
-            bathrooms: 1,
-            status: "available",
-            amenities: ["Wi-Fi", "Parking"],
-            media: [
-                { type: "image", src: "1bedroom1.jpeg" },
-                { type: "image", src: "1bedroom2.jpeg" },
-                { type: "video", src: "1bedroomvid1.mp4" },
-                { type: "video", src: "1bedroomvid2.mp4" }
-            ],
-            description: "Cozy one-bedroom apartment with modern amenities in Golden Rock.",
-            features: ["1 Bedroom", "1 Bathroom", "Short Term"],
-            availability: ["2025-10-10", "2025-10-11", "2025-10-12"],
-            reviews: [
-                { rating: 4, comment: "Great location, very clean.", user: "Sarah M." }
-            ]
-        },
-        {
-            id: 2,
-            title: "Golden Rock Apartments 2",
-            location: "Golden Rock, Barbados",
-            price: "$300 BBD",
-            type: "apartment",
-            bedrooms: 2,
-            bathrooms: 1,
-            status: "available",
-            amenities: ["Wi-Fi", "Pool", "Parking"],
-            media: [
-                { type: "image", src: "2bedroom1.jpeg" },
-                { type: "image", src: "2bedroom2.jpeg" },
-                { type: "image", src: "2bedroom3.jpeg" },
-                { type: "image", src: "2bedroom4.jpeg" },
-                { type: "video", src: "2bedroomvid.mp4" }
-            ],
-            description: "Spacious two-bedroom apartment with ocean views.",
-            features: ["2 Bedrooms", "1 Bathroom"],
-            availability: [],
-            reviews: [
-                { rating: 5, comment: "Amazing stay!", user: "John D." }
-            ]
-        },
-        {
-            id: 3,
-            title: "Golden Rock Apartments 3",
-            location: "Golden Rock, Barbados",
-            price: "$400-452 BBD",
-            type: "apartment",
-            bedrooms: 3,
-            bathrooms: 2,
-            status: "available",
-            amenities: ["Wi-Fi", "Gym"],
-            media: [
-                { type: "image", src: "shortterm.png" },
-                { type: "video", src: "shortterm.mp4" }
-            ],
-            description: "Modern one-bedroom apartment under maintenance, available soon.",
-            features: ["1 Bedroom", "1 Bathroom", "Short Term"],
-            availability: [],
-            reviews: []
-        },
-        // <<< NEW APARTMENT ADDED HERE >>>
-        {
-            id: 4,
-            title: "Cozy Studio",
-            location: "Dash Valley Hanson Heights, St. George, Barbados",
-            price: "$220 BBD",
-            type: "apartment",
-            bedrooms: 1,
-            bathrooms: 1,
-            status: "available",
-            amenities: ["Wi-Fi", "Pool", "Parking"],
-            media: [
-                { type: "image", src: "hansonheights1.jpeg" },
-                { type: "image", src: "dashvalley2.jpeg" },
-                { type: "video", src: "dashvalleyvid.mp4" }
-            ],
-            description: "Modern one-bedroom apartment in the quiet community of Dash Valley Hanson Heights.",
-            features: ["1 Bedrooms", "1 Bathroom", "Pool Access"],
-            availability: ["2025-11-15", "2025-11-16", "2025-11-20"],
-            reviews: [
-                { rating: 5, comment: "Spacious and peaceful!", user: "Michael P." }
-            ]
-        }
-    ];
+    <script>
+        const properties = [
+            {
+                id: 1,
+                title: "Golden Rock Apartments 1",
+                location: "Golden Rock, Barbados",
+                price: "$225 BBD",
+                type: "apartment",
+                bedrooms: 1,
+                bathrooms: 1,
+                status: "available",
+                amenities: ["Wi-Fi", "Parking"],
+                media: [
+                    { type: "image", src: "1bedroom1.jpeg" },
+                    { type: "image", src: "1bedroom2.jpeg" },
+                    { type: "video", src: "1bedroomvid1.mp4" },
+                    { type: "video", src: "1bedroomvid2.mp4" }
+                ],
+                description: "Cozy one-bedroom apartment with modern amenities in Golden Rock.",
+                features: ["1 Bedroom", "1 Bathroom", "Short Term"],
+                availability: ["2025-10-10", "2025-10-11", "2025-10-12"],
+                reviews: [
+                    { rating: 4, comment: "Great location, very clean.", user: "Sarah M." }
+                ]
+            },
+            {
+                id: 2,
+                title: "Golden Rock Apartments 2",
+                location: "Golden Rock, Barbados",
+                price: "$300 BBD",
+                type: "apartment",
+                bedrooms: 2,
+                bathrooms: 1,
+                status: "availableavailable",
+                amenities: ["Wi-Fi", "Pool", "Parking"],
+                media: [
+                    { type: "image", src: "2bedroom1.jpeg" },
+                    { type: "image", src: "2bedroom2.jpeg" },
+                    { type: "image", src: "2bedroom3.jpeg" },
+                    { type: "image", src: "2bedroom4.jpeg" },
+                    { type: "video", src: "2bedroomvid.mp4" }
+                ],
+                description: "Spacious two-bedroom apartment with ocean views.",
+                features: ["2 Bedrooms", "1 Bathroom"],
+                availability: [],
+                reviews: [
+                    { rating: 5, comment: "Amazing stay!", user: "John D." }
+                ]
+            },
+            {
+                id: 3,
+                title: "Golden Rock Apartments 3",
+                location: "Golden Rock, Barbados",
+                price: "$400-452 BBD",
+                type: "apartment",
+                bedrooms: 3,
+                bathrooms: 2,
+                status: "available",
+                amenities: ["Wi-Fi", "Gym"],
+                media: [
+                    { type: "image", src: "shortterm.png" },
+                    { type: "video", src: "shortterm.mp4" }
+                ],
+                description: "Modern one-bedroom apartment under maintenance, available soon.",
+                features: ["1 Bedroom", "1 Bathroom", "Short Term"],
+                availability: [],
+                reviews: []
+            },
+            // NEW APARTMENT: Dash Valley Hanson Heights
+            {
+                id: 4,
+                title: "Dash Valley Hanson Heights",
+                location: "Dash Valley, St. George, Barbados",
+                price: "$350 BBD",
+                type: "apartment",
+                bedrooms: 2,
+                bathrooms: 2,
+                status: "available",
+                amenities: ["Wi-Fi", "Pool", "Parking", "Gym"],
+                media: [
+                    { type: "image", src: "dashvalley1.jpeg" },
+                    { type: "image", src: "dashvalley2.jpeg" },
+                    { type: "video", src: "dashvalleyvid.mp4" }
+                ],
+                description: "Modern two-bedroom apartment in the quiet community of Dash Valley Hanson Heights.",
+                features: ["2 Bedrooms", "2 Bathrooms", "Pool Access", "Gym"],
+                availability: ["2025-11-15", "2025-11-16", "2025-11-20"],
+                reviews: [
+                    { rating: 5, comment: "Spacious and peaceful!", user: "Michael P." }
+                ]
+            }
+        ];
 
-    // -------------------------------------------------
-    // (All the existing JavaScript below stays unchanged)
-    // -------------------------------------------------
-    // Navigation toggle
-    document.querySelector('.hamburger').addEventListener('click', () => {
-        document.querySelector('.nav-menu').classList.toggle('active');
-    });
-
-    // View toggle
-    document.querySelectorAll('.view-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const view = btn.dataset.view;
-            const container = document.getElementById('properties-container');
-            container.className = view === 'grid' ? 'properties-grid' : 'properties-list';
+        // Navigation toggle
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
         });
-    });
 
-    // Populate properties
-    function renderProperties(filteredProperties) {
-        const container = document.getElementById('properties-container');
-        container.innerHTML = '';
-        filteredProperties.forEach(property => {
-            const firstImage = property.media.find(media => media.type === 'image') || property.media[0];
-            const card = document.createElement('div');
-            card.className = 'property-card';
-            card.innerHTML = `
-                <div class="property-image">
-                    <img src="${firstImage.src}" alt="${property.title}">
-                    <span class="property-badge">${property.type}</span>
-                    <span class="property-status">${property.status}</span>
-                    <div class="property-overlay">
-                        <h3>${property.title}</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
-                        <div class="property-features">
-                            ${property.features.map(feature => `<span class="feature">${feature}</span>`).join('')}
+        // View toggle
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const view = btn.dataset.view;
+                const container = document.getElementById('properties-container');
+                container.className = view === 'grid' ? 'properties-grid' : 'properties-list';
+            });
+        });
+
+        // Populate properties
+        function renderProperties(filteredProperties) {
+            const container = document.getElementById('properties-container');
+            container.innerHTML = '';
+            filteredProperties.forEach(property => {
+                const firstImage = property.media.find(media => media.type === 'image') || property.media[0];
+                const card = document.createElement('div');
+                card.className = 'property-card';
+                card.innerHTML = `
+                    <div class="property-image">
+                        <img src="${firstImage.src}" alt="${property.title}">
+                        <span class="property-badge">${property.type}</span>
+                        <span class="property-status">${property.status}</span>
+                        <div class="property-overlay">
+                            <h3>${property.title}</h3>
+                            <p><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
+                            <div class="property-features">
+                                ${property.features.map(feature => `<span class="feature">${feature}</span>`).join('')}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="property-info">
-                    <div class="property-price">${property.price}</div>
-                    <button class="view-btn-eye"><i class="fas fa-eye"></i> View Media</button>
-                </div>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    // Show media modal
-    function showMediaModal(propertyId) {
-        const property = properties.find(p => p.id === propertyId);
-        const modal = document.getElementById('media-modal');
-        const carousel = document.getElementById('modal-carousel');
-        carousel.innerHTML = property.media.map((item, index) => `
-            ${item.type === 'image' ?
-                `<img src="${item.src}" alt="${property.title}" class="${index === 0 ? 'active' : ''}">` :
-                `<video src="${item.src}" class="${index === 0 ? 'active' : ''}" controls autoplay muted></video>`
-            }
-        `).join('');
-        modal.style.display = 'flex';
-        const prevBtn = document.getElementById('modal-prev');
-        const nextBtn = document.getElementById('modal-next');
-        prevBtn.disabled = true;
-        nextBtn.disabled = property.media.length <= 1;
-
-        function updateCarousel(direction) {
-            const mediaElements = carousel.querySelectorAll('img, video');
-            let currentIndex = Array.from(mediaElements).findIndex(el => el.classList.contains('active'));
-            let newIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
-            if (newIndex >= 0 && newIndex < mediaElements.length) {
-                mediaElements[currentIndex].classList.remove('active');
-                mediaElements[currentIndex].pause && mediaElements[currentIndex].pause();
-                mediaElements[newIndex].classList.add('active');
-                mediaElements[newIndex].play && mediaElements[newIndex].play();
-                prevBtn.disabled = newIndex === 0;
-                nextBtn.disabled = newIndex === mediaElements.length - 1;
-            }
+                    <div class="property-info">
+                        <div class="property-price">${property.price}</div>
+                        <button class="view-btn-eye"><i class="fas fa-eye"></i> View Media</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
         }
-        prevBtn.onclick = () => updateCarousel('prev');
-        nextBtn.onclick = () => updateCarousel('next');
 
-        document.querySelector('.modal-close').onclick = () => {
-            modal.style.display = 'none';
-            carousel.querySelectorAll('video').forEach(video => video.pause());
-        };
-        modal.onclick = (e) => {
-            if (e.target === modal) {
+        // Show media modal
+        function showMediaModal(propertyId) {
+            const property = properties.find(p => p.id === propertyId);
+            const modal = document.getElementById('media-modal');
+            const carousel = document.getElementById('modal-carousel');
+            carousel.innerHTML = property.media.map((item, index) => `
+                ${item.type === 'image' ?
+                    `<img src="${item.src}" alt="${property.title}" class="${index === 0 ? 'active' : ''}">` :
+                    `<video src="${item.src}" class="${index === 0 ? 'active' : ''}" controls autoplay muted></video>`
+                }
+            `).join('');
+            modal.style.display = 'flex';
+            const prevBtn = document.getElementById('modal-prev');
+            const nextBtn = document.getElementById('modal-next');
+            prevBtn.disabled = true;
+            nextBtn.disabled = property.media.length <= 1;
+
+            function updateCarousel(direction) {
+                const mediaElements = carousel.querySelectorAll('img, video');
+                let currentIndex = Array.from(mediaElements).findIndex(el => el.classList.contains('active'));
+                let newIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
+                if (newIndex >= 0 && newIndex < mediaElements.length) {
+                    mediaElements[currentIndex].classList.remove('active');
+                    mediaElements[currentIndex].pause && mediaElements[currentIndex].pause();
+                    mediaElements[newIndex].classList.add('active');
+                    mediaElements[newIndex].play && mediaElements[newIndex].play();
+                    prevBtn.disabled = newIndex === 0;
+                    nextBtn.disabled = newIndex === mediaElements.length - 1;
+                }
+            }
+            prevBtn.onclick = () => updateCarousel('prev');
+            nextBtn.onclick = () => updateCarousel('next');
+
+            document.querySelector('.modal-close').onclick = () => {
                 modal.style.display = 'none';
                 carousel.querySelectorAll('video').forEach(video => video.pause());
+            };
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    carousel.querySelectorAll('video').forEach(video => video.pause());
+                }
+            };
+        }
+
+        // Filter properties
+        function filterProperties() {
+            const type = document.getElementById('filter-type').value;
+            const price = document.getElementById('filter-price').value;
+            const bedrooms = document.getElementById('filter-bedrooms').value;
+            const bathrooms = document.getElementById('filter-bathrooms').value;
+            const status = document.getElementById('filter-status').value;
+            let filtered = properties;
+            if (type) filtered = filtered.filter(p => p.type === type);
+            if (price) filtered = filtered.filter(p => {
+                const priceNum = parseInt(p.price.replace('$', '').split('/')[0]);
+                if (price === '0-100') return priceNum <= 100;
+                if (price === '100-200') return priceNum > 100 && priceNum <= 200;
+                if (price === '200+') return priceNum > 200;
+                return true;
+            });
+            if (bedrooms) filtered = filtered.filter(p => {
+                if (bedrooms === '3+') return p.bedrooms >= 3;
+                return p.bedrooms == bedrooms;
+            });
+            if (bathrooms) filtered = filtered.filter(p => {
+                if (bathrooms === '3+') return p.bathrooms >= 3;
+                return p.bathrooms == bathrooms;
+            });
+            if (status) filtered = filtered.filter(p => p.status === status);
+            renderProperties(filtered);
+        }
+
+        // Show listing details
+        function showListingDetails(id) {
+            const property = properties.find(p => p.id === id);
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('listings').style.display = 'none';
+            document.getElementById('appointment').style.display = 'none';
+            document.getElementById('map').style.display = 'none';
+            document.getElementById('listing-details').style.display = 'block';
+            const firstImage = property.media.find(media => media.type === 'image') || property.media[0];
+            document.getElementById('main-image').src = firstImage.src;
+            document.getElementById('listing-title').textContent = property.title;
+            document.getElementById('listing-location').textContent = `${property.location}`;
+            document.getElementById('listing-price').textContent = property.price;
+            document.getElementById('listing-description').textContent = property.description;
+            const features = document.getElementById('listing-features');
+            features.innerHTML = property.features.map(f => `<span class="feature-tag">${f}</span>`).join('');
+            const thumbnails = document.getElementById('thumbnail-grid');
+            thumbnails.innerHTML = property.media
+                .filter(item => item.type === 'image')
+                .map(item => `
+                    <div class="thumbnail">
+                        <img src="${item.src}" alt="Property thumbnail" onclick="document.getElementById('main-image').src = this.src">
+                    </div>
+                `).join('');
+            const calendar = document.getElementById('calendar');
+            calendar.innerHTML = '';
+            for (let i = 1; i <= 30; i++) {
+                const day = document.createElement('div');
+                day.className = `day ${property.availability.includes(`2025-11-${i.toString().padStart(2, '0')}`) ? 'available' : 'booked'}`;
+                day.textContent = i;
+                calendar.appendChild(day);
             }
-        };
-    }
-
-    // Filter properties
-    function filterProperties() {
-        const type = document.getElementById('filter-type').value;
-        const price = document.getElementById('filter-price').value;
-        const bedrooms = document.getElementById('filter-bedrooms').value;
-        const bathrooms = document.getElementById('filter-bathrooms').value;
-        const status = document.getElementById('filter-status').value;
-        let filtered = properties;
-        if (type) filtered = filtered.filter(p => p.type === type);
-        if (price) filtered = filtered.filter(p => {
-            const priceNum = parseInt(p.price.replace('$', '').split('/')[0]);
-            if (price === '0-100') return priceNum <= 100;
-            if (price === '100-200') return priceNum > 100 && priceNum <= 200;
-            if (price === '200+') return priceNum > 200;
-            return true;
-        });
-        if (bedrooms) filtered = filtered.filter(p => {
-            if (bedrooms === '3+') return p.bedrooms >= 3;
-            return p.bedrooms == bedrooms;
-        });
-        if (bathrooms) filtered = filtered.filter(p => {
-            if (bathrooms === '3+') return p.bathrooms >= 3;
-            return p.bathrooms == bathrooms;
-        });
-        if (status) filtered = filtered.filter(p => p.status === status);
-       
-        renderProperties(filtered);
-    }
-
-    // Show listing details
-    function showListingDetails(id) {
-        const property = properties.find(p => p.id === id);
-        document.getElementById('home').style.display = 'none';
-        document.getElementById('listings').style.display = 'none';
-        document.getElementById('appointment').style.display = 'none';
-        document.getElementById('map').style.display = 'none';
-        document.getElementById('listing-details').style.display = 'block';
-        const firstImage = property.media.find(media => media.type === 'image') || property.media[0];
-        document.getElementById('main-image').src = firstImage.src;
-        document.getElementById('listing-title').textContent = property.title;
-        document.getElementById('listing-location').textContent = `${property.location}`;
-        document.getElementById('listing-price').textContent = property.price;
-        document.getElementById('listing-description').textContent = property.description;
-        const features = document.getElementById('listing-features');
-        features.innerHTML = property.features.map(f => `<span class="feature-tag">${f}</span>`).join('');
-        const thumbnails = document.getElementById('thumbnail-grid');
-        thumbnails.innerHTML = property.media
-            .filter(item => item.type === 'image')
-            .map(item => `
-                <div class="thumbnail">
-                    <img src="${item.src}" alt="Property thumbnail" onclick="document.getElementById('main-image').src = this.src">
+            const reviews = document.getElementById('reviews-container');
+            reviews.innerHTML = property.reviews.map(r => `
+                <div class="review">
+                    <div class="rating">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+                    <p>${r.comment}</p>
+                    <p><small>${r.user}</small></p>
                 </div>
             `).join('');
-        const calendar = document.getElementById('calendar');
-        calendar.innerHTML = '';
-        for (let i = 1; i <= 30; i++) {
-            const day = document.createElement('div');
-            day.className = `day ${property.availability.includes(`2025-11-${i.toString().padStart(2, '0')}`) ? 'available' : 'booked'}`;
-            day.textContent = i;
-            calendar.appendChild(day);
+            document.getElementById('booking-status').value = property.status;
+            const availableDays = property.availability.length;
+            const totalDays = 30;
+            const progress = Math.round((availableDays / totalDays) * 100);
+            document.getElementById('booking-progress').textContent = `${progress}%`;
+            document.querySelector('.progress-fill').style.width = `${progress}%`;
+            window.scrollTo(0, 0);
         }
-        const reviews = document.getElementById('reviews-container');
-        reviews.innerHTML = property.reviews.map(r => `
-            <div class="review">
-                <div class="rating">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
-                <p>${r.comment}</p>
-                <p><small>${r.user}</small></p>
-            </div>
-        `).join('');
-        document.getElementById('booking-status').value = property.status;
-        const availableDays = property.availability.length;
-        const totalDays = 30;
-        const progress = Math.round((availableDays / totalDays) * 100);
-        document.getElementById('booking-progress').textContent = `${progress}%`;
-        document.querySelector('.progress-fill').style.width = `${progress}%`;
-        window.scrollTo(0, 0);
-    }
 
-    // Initialize
-    document.querySelectorAll('#filter-type, #filter-price, #filter-bedrooms, #filter-bathrooms, #filter-status').forEach(filter => {
-        filter.addEventListener('change', filterProperties);
-    });
-    renderProperties(properties);
+        // Initialize
+        document.querySelectorAll('#filter-type, #filter-price, #filter-bedrooms, #filter-bathrooms, #filter-status').forEach(filter => {
+            filter.addEventListener('change', filterProperties);
+        });
+        renderProperties(properties);
 
-    // Attach event listeners to view buttons
-    document.addEventListener('click', (e) => {
-        const btn = e.target.closest('.view-btn-eye');
-        if (btn) {
-            const card = btn.parentElement.parentElement;
-            const index = Array.from(document.querySelectorAll('.property-card')).indexOf(card);
-            showMediaModal(properties[index].id);
-        }
-    });
-</script>
+        // Attach event listeners to view buttons
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.view-btn-eye');
+            if (btn) {
+                const card = btn.parentElement.parentElement;
+                const index = Array.from(document.querySelectorAll('.property-card')).indexOf(card);
+                showMediaModal(properties[index].id);
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
