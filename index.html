@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NNRentals - Your Apartment Rental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --forest-green: #228B22;
+            --light-green: #90EE90;
+            --dark-green: #1a5f1a;
+            --light-gold: #fff8dc;
+            --white: #ffffff;
+            --black: #000000;
+            --gray: #666666;
+            --light-gray: #f5f5f5;
+            --ultramarine-blue: #2e1fe3;
+            --shadow-sm: 0 2px 5px rgba(0,0,0,0.1);
+            --shadow-md: 0 10px 20px rgba(0,0,0,0.15);
+            --shadow-lg: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            color: var(--black);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
+        }
+
+        .nav-logo h2 {
+            color: var(--forest-green);
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--forest-green);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--forest-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--forest-green);
+            padding: 12px 24px;
+            border-radius: 30px;
+            color: var(--white) !important;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold) !important;
+            color: var(--black) !important;
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 4px;
+            background: var(--forest-green);
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 120px 30px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: var(--ultramarine-blue);
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .btn-primary {
+            background: var(--forest-green);
+            color: var(--white);
+            padding: 18px 36px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--forest-green);
+            padding: 18px 36px;
+            border: 2px solid var(--forest-green);
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--forest-green);
+            color: var(--white);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Search Form */
+        .hero-search {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            margin-top: 40px;
+        }
+
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .search-input {
+            position: relative;
+            flex: 1;
+        }
+
+        .search-input i {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+
+        .search-input input, .search-input select {
+            width: 100%;
+            padding: 1.2rem 1.2rem 1.2rem 4rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input input:focus, .search-input select:focus {
+            outline: none;
+            border-color: var(--forest-green);
+        }
+
+        .search-filters {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* Listings Section */
+        .listings-section {
+            padding: 120px 0;
+            background: var(--light-gray);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--ultramarine-blue);
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 1.3rem;
+            color: var(--gray);
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .filters select, .filters input {
+            padding: 1.2rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            background: var(--white);
+            cursor: pointer;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            justify-content: flex-end;
+        }
+
+        .view-btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--light-gray);
+            background: var(--white);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .view-btn.active {
+            background: var(--forest-green);
+            color: var(--white);
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .properties-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .property-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .property-card:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .property-image {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.1);
+        }
+
+        .property-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 30px;
+            color: var(--white);
+        }
+
+        .property-overlay h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .property-overlay p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--black);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .property-status {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--forest-green);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .property-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 15px;
+        }
+
+        .feature {
+            background: var(--light-gold);
+            color: var(--black);
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .property-info {
+            padding: 30px;
+            background: var(--white);
+        }
+
+        .property-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--forest-green);
+            margin-bottom: 20px;
+        }
+
+        .view-btn-eye {
+            background: var(--forest-green);
+            color: var(--white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            margin-left: 10px;
+        }
+
+        .view-btn-eye:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Popup Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--forest-green);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .modal-carousel {
+            position: relative;
+            height: 500px;
+        }
+
+        .modal-carousel img, .modal-carousel video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .modal-carousel img.active, .modal-carousel video.active {
+            display: block;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--white);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background: var(--forest-green);
+        }
+
+        .carousel-btn:disabled {
+            background: rgba(0, 0, 0, 0.3);
+            cursor: not-allowed;
+        }
+
+        /* Listing Details */
+        .listing-details {
+            padding: 120px 0;
+        }
+
+        .listing-gallery {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .thumbnail img:hover {
+            transform: scale(1.05);
+        }
+
+        .listing-info {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        .listing-description h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--ultramarine-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .listing-description p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .listing-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-tag {
+            background: var(--light-gold);
+            padding: 0.75rem 1.2rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            color: var(--black);
+        }
+
+        .availability-calendar {
+            margin-bottom: 3rem;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+
+        .calendar .day {
+            padding: 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .calendar .day.booked {
+            background: var(--light-gray);
+            cursor: not-allowed;
+        }
+
+        .calendar .day.available:hover {
+            background: var(--forest-green);
+            color: var(--white);
+        }
+
+        .reviews {
+            margin-top: 3rem;
+        }
+
+        .review {
+            border-bottom: 1px solid var(--light-gray);
+            padding: 1.5rem 0;
+        }
+
+        .review:last-child {
+            border-bottom: none;
+        }
+
+        .review .rating {
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-tenant {
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .booking-form h3 {
+            font-size: 1.8rem;
+            color: var(--ultramarine-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--forest-green), var(--gold));
+            border-radius: 10px;
+            transition: width 0.8s ease;
+        }
+
+        /* Appointment Section */
+        .appointment-section {
+            padding: 120px 0;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .appointment-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--ultramarine-blue);
+            margin-bottom: 20px;
+        }
+
+        .appointment-section p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 120px 0;
+            background: var(--light-gray);
+            text-align: center;
+        }
+
+        .map-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--ultramarine-blue);
+            margin-bottom: 20px;
+        }
+
+        .map-section p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .map-container {
+            max-width: 100%;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-section h3 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: var(--forest-green);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            text-align: center;
+            opacity: 0.6;
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+            .listing-gallery {
+                grid-template-columns: 1fr;
+            }
+            .listing-info {
+                grid-template-columns: 1fr;
+            }
+            .search-filters, .filters {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+                position: fixed;
+                top: 100px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 3rem;
+                box-shadow: var(--shadow-md);
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hero {
+                padding: 100px 20px 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .search-filters, .filters {
+                grid-template-columns: 1fr;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-height: 70vh;
+            }
+
+            .modal-carousel {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .calendar .day {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+
+            .listing-gallery .main-image img {
+                height: 350px;
+            }
+
+            .thumbnail img {
+                height: 160px;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-search {
+                padding: 2rem;
+            }
+
+            .modal-carousel {
+                height: 200px;
+            }
+
+            .appointment-section {
+                padding: 60px 15px;
+            }
+
+            .appointment-section h2 {
+                font-size: 2rem;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><h2>Golden Rock Apartments</h2></div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a class="nav-link" href="#home">Home</a></li>
+                <li><a class="nav-link" href="#listings">Listings</a></li>
+                <li><a class="nav-link" href="#appointment">Book Appointment</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main id="app">
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Find Your Perfect Apartment</h1>
+                        <p>Browse my curated selection of apartments at Sunset Towers, designed for comfort and convenience in Dash Valley, Barbados.</p>
+                        <div class="hero-buttons">
+                            <a href="#listings" class="btn-primary">Browse Listings</a>
+                            <a href="#appointment" class="btn-secondary">Schedule a Viewing</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt="Apartment building">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="listings" class="listings-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>My Apartment Listings</h2>
+                    <p>Browse my available apartments at Sunset Towers</p>
+                </div>
+                <div class="filters">
+                    <select id="filter-type">
+                        <option value="">Property Type</option>
+                        <option value="apartment">Apartment</option>
+                    </select>
+                    <select id="filter-price">
+                        <option value="">Price Range</option>
+                        <option value="0-100">$0 - $100</option>
+                        <option value="100-200">$100 - $200</option>
+                        <option value="200+">$200+</option>
+                    </select>
+                    <select id="filter-bedrooms">
+                        <option value="">Bedrooms</option>
+                        <option value="1">1 Bedroom</option>
+                        <option value="2">2 Bedrooms</option>
+                        <option value="3+">3+ Bedrooms</option>
+                    </select>
+                    <select id="filter-bathrooms">
+                        <option value="">Bathrooms</option>
+                        <option value="1">1 Bathroom</option>
+                        <option value="2">2 Bathrooms</option>
+                        <option value="3+">3+ Bathrooms</option>
+                    </select>
+                    <select id="filter-status">
+                        <option value="">Status</option>
+                        <option value="available">Available</option>
+                        <option value="booked">Booked</option>
+                        <option value="maintenance">Maintenance</option>
+                    </select>
+                </div>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid">Grid</button>
+                    <button class="view-btn" data-view="list">List</button>
+                </div>
+                <div class="properties-grid" id="properties-container">
+                    <!-- Properties will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="appointment" class="appointment-section">
+            <div class="container">
+                <h2>Book a Viewing Appointment</h2>
+                <p>Schedule a convenient time to view my apartments and discuss your rental needs.</p>
+                <div class="calendly-section">
+                    <div class="calendly-inline-widget" 
+                         data-url="https://calendly.com/nnrentals/viewing"
+                         style="min-width:100%;height:700px;"></div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p style="color: var(--gray); max-width: 600px; margin: 0 auto;">
+                        Or contact me directly at <a href="tel:+1234567890" style="color: var(--forest-green); text-decoration: none;">+1 (234) 567-890</a> 
+                        to schedule your appointment.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="listing-details" class="listing-details" style="display: none;">
+            <div class="container">
+                <div class="listing-gallery">
+                    <div class="main-image">
+                        <img src="" alt="Main property image" id="main-image">
+                    </div>
+                    <div class="thumbnail-grid" id="thumbnail-grid">
+                        <!-- Thumbnails will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="listing-info">
+                    <div class="listing-description">
+                        <h2 id="listing-title"></h2>
+                        <p id="listing-location"></p>
+                        <p id="listing-price"></p>
+                        <p id="listing-description"></p>
+                        <div class="listing-features" id="listing-features">
+                            <!-- Features will be populated by JavaScript -->
+                        </div>
+                        <div class="availability-calendar">
+                            <h3>Availability</h3>
+                            <div class="calendar" id="calendar">
+                                <!-- Calendar will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="reviews">
+                            <h3>Tenant Reviews</h3>
+                            <div id="reviews-container">
+                                <!-- Reviews will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="contact-tenant">
+                            <h3>Contact Landlord</h3>
+                            <form class="contact-form">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" placeholder="Your Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea placeholder="Message" required></textarea>
+                                </div>
+                                <button class="btn-primary">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="sidebar">
+                        <div class="booking-form">
+                            <h3>Inquire About This Apartment</h3>
+                            <div class="form-group">
+                                <select id="booking-status">
+                                    <option value="available">Available</option>
+                                    <option value="booked">Booked</option>
+                                    <option value="maintenance">Maintenance</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" id="booking-check-in">
+                            </div>
+                            <div class="form-group">
+                                <input type="date" id="booking-check-out">
+                            </div>
+                            <div class="progress-section">
+                                <div class="progress-header">
+                                    <span>Booking Availability</span>
+                                    <span class="progress-percentage" id="booking-progress">0%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <button class="btn-primary">Inquire Now</button>
+                            <button class="btn-secondary">Contact Landlord</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map" class="map-section">
+            <div class="container">
+                <h2>Our Location</h2>
+                <p>Find Sunset Towers in the heart of Dash Valley, Barbados.</p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1530.1849805793051!2d-59.570303906663575!3d13.108609364778141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c43f402e5dc5dd3%3A0x296ef6eb5ac8fda5!2sDash%20Valley%2C%20Saint%20George%20Barbados!5e0!3m2!1sen!2s!4v1761099267818!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <div class="modal" id="media-modal">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div class="modal-carousel" id="modal-carousel">
+                    <!-- Carousel content will be populated by JavaScript -->
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" id="modal-prev" disabled>←</button>
+                    <button class="carousel-btn next" id="modal-next">→</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>NNRentals</h3>
+                        <p>Your trusted source for comfortable and convenient apartment rentals in Dash Valley, Barbados.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#listings">Listings</a></li>
+                            <li><a href="#appointment">Book Appointment</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li><a href="mailto:info@nnrentals.com">info@nnrentals.com</a></li>
+                            <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2025 NNRentals. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script>
+        // Sample data
+        const properties = [
+            {
+                id: 1,
+                title: "Sunset Towers Unit 101",
+                location: "Dash Valley, Barbados",
+                price: "$120/night",
+                type: "apartment",
+                bedrooms: 1,
+                bathrooms: 1,
+                status: "available",
+                amenities: ["Wi-Fi", "Parking"],
+                media: [
+                    { type: "image", src: "1bedroom1.jpeg" },
+                    { type: "image", src: "1bedroom2.jpeg" },
+                    { type: "video", src: "1bedroomvid1.mp4" },
+                    { type: "video", src: "1bedroomvid2.mp4" }
+                ],
+                description: "Cozy one-bedroom apartment with modern amenities in Sunset Towers.",
+                features: ["1 Bedroom", "1 Bathroom", "Short Term"],
+                availability: ["2025-10-10", "2025-10-11", "2025-10-12"],
+                reviews: [
+                    { rating: 4, comment: "Great location, very clean.", user: "Sarah M." }
+                ]
+            },
+            {
+                id: 2,
+                title: "Sunset Towers Unit 202",
+                location: "Dash Valley, Barbados",
+                price: "$180/night",
+                type: "apartment",
+                bedrooms: 2,
+                bathrooms: 2,
+                status: "available",
+                amenities: ["Wi-Fi", "Pool", "Parking"],
+                media: [
+                    { type: "image", src: "2bedroom1.jpeg" },
+                    { type: "image", src: "2bedroom2.jpeg" },
+                    { type: "image", src: "2bedroom3.jpeg" },
+                    { type: "image", src: "2bedroom4.jpeg" },
+                    { type: "video", src: "2bedroomvid.mp4" }
+                ],
+                description: "Spacious two-bedroom apartment with ocean views in Sunset Towers.",
+                features: ["2 Bedrooms", "1 Bathroom"],
+                availability: [],
+                reviews: [
+                    { rating: 5, comment: "Amazing stay!", user: "John D." }
+                ]
+            },
+            {
+                id: 3,
+                title: "Sunset Towers Unit 303",
+                location: "Dash Valley, Barbados",
+                price: "$150/night",
+                type: "apartment",
+                bedrooms: 1,
+                bathrooms: 1,
+                status: "available",
+                amenities: ["Wi-Fi", "Gym"],
+                media: [
+                    { type: "image", src: "shortterm.png" },
+                    { type: "video", src: "shortterm.mp4" }
+                ],
+                description: "Modern one-bedroom apartment under maintenance, available soon.",
+                features: ["1 Bedroom", "1 Bathroom", "Short Term"],
+                availability: [],
+                reviews: []
+            }
+        ];
+
+        // Navigation toggle
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // View toggle
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const view = btn.dataset.view;
+                const container = document.getElementById('properties-container');
+                container.className = view === 'grid' ? 'properties-grid' : 'properties-list';
+            });
+        });
+
+        // Populate properties
+        function renderProperties(filteredProperties) {
+            const container = document.getElementById('properties-container');
+            container.innerHTML = '';
+            filteredProperties.forEach(property => {
+                const firstImage = property.media.find(media => media.type === 'image') || property.media[0];
+                const card = document.createElement('div');
+                card.className = 'property-card';
+                card.innerHTML = `
+                    <div class="property-image">
+                        <img src="${firstImage.src}" alt="${property.title}">
+                        <span class="property-badge">${property.type}</span>
+                        <span class="property-status">${property.status}</span>
+                        <div class="property-overlay">
+                            <h3>${property.title}</h3>
+                            <p><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
+                            <div class="property-features">
+                                ${property.features.map(feature => `<span class="feature">${feature}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property-info">
+                        <div class="property-price">${property.price}</div>
+                        <button class="view-btn-eye"><i class="fas fa-eye"></i> View Media</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Show media modal
+        function showMediaModal(propertyId) {
+            const property = properties.find(p => p.id === propertyId);
+            const modal = document.getElementById('media-modal');
+            const carousel = document.getElementById('modal-carousel');
+            carousel.innerHTML = property.media.map((item, index) => `
+                ${item.type === 'image' ? 
+                    `<img src="${item.src}" alt="${property.title}" class="${index === 0 ? 'active' : ''}">` :
+                    `<video src="${item.src}" class="${index === 0 ? 'active' : ''}" controls autoplay muted></video>`
+                }
+            `).join('');
+
+            modal.style.display = 'flex';
+            const prevBtn = document.getElementById('modal-prev');
+            const nextBtn = document.getElementById('modal-next');
+            prevBtn.disabled = true;
+            nextBtn.disabled = property.media.length <= 1;
+
+            // Carousel navigation
+            function updateCarousel(direction) {
+                const mediaElements = carousel.querySelectorAll('img, video');
+                let currentIndex = Array.from(mediaElements).findIndex(el => el.classList.contains('active'));
+                let newIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
+
+                if (newIndex >= 0 && newIndex < mediaElements.length) {
+                    mediaElements[currentIndex].classList.remove('active');
+                    mediaElements[currentIndex].pause && mediaElements[currentIndex].pause();
+                    mediaElements[newIndex].classList.add('active');
+                    mediaElements[newIndex].play && mediaElements[newIndex].play();
+                    prevBtn.disabled = newIndex === 0;
+                    nextBtn.disabled = newIndex === mediaElements.length - 1;
+                }
+            }
+
+            prevBtn.onclick = () => updateCarousel('prev');
+            nextBtn.onclick = () => updateCarousel('next');
+
+            // Close modal
+            document.querySelector('.modal-close').onclick = () => {
+                modal.style.display = 'none';
+                carousel.querySelectorAll('video').forEach(video => video.pause());
+            };
+
+            // Close modal when clicking outside
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    carousel.querySelectorAll('video').forEach(video => video.pause());
+                }
+            };
+        }
+
+        // Filter properties
+        function filterProperties() {
+            const type = document.getElementById('filter-type').value;
+            const price = document.getElementById('filter-price').value;
+            const bedrooms = document.getElementById('filter-bedrooms').value;
+            const bathrooms = document.getElementById('filter-bathrooms').value;
+            const status = document.getElementById('filter-status').value;
+
+            let filtered = properties;
+            if (type) filtered = filtered.filter(p => p.type === type);
+            if (price) filtered = filtered.filter(p => {
+                const priceNum = parseInt(p.price.replace('$', '').split('/')[0]);
+                if (price === '0-100') return priceNum <= 100;
+                if (price === '100-200') return priceNum > 100 && priceNum <= 200;
+                if (price === '200+') return priceNum > 200;
+                return true;
+            });
+            if (bedrooms) filtered = filtered.filter(p => {
+                if (bedrooms === '3+') return p.bedrooms >= 3;
+                return p.bedrooms == bedrooms;
+            });
+            if (bathrooms) filtered = filtered.filter(p => {
+                if (bathrooms === '3+') return p.bathrooms >= 3;
+                return p.bathrooms == bathrooms;
+            });
+            if (status) filtered = filtered.filter(p => p.status === status);
+            
+            renderProperties(filtered);
+        }
+
+        // Show listing details
+        function showListingDetails(id) {
+            const property = properties.find(p => p.id === id);
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('listings').style.display = 'none';
+            document.getElementById('appointment').style.display = 'none';
+            document.getElementById('map').style.display = 'none';
+            document.getElementById('listing-details').style.display = 'block';
+
+            const firstImage = property.media.find(media => media.type === 'image') || property.media[0];
+            document.getElementById('main-image').src = firstImage.src;
+            document.getElementById('listing-title').textContent = property.title;
+            document.getElementById('listing-location').textContent = `${property.location}`;
+            document.getElementById('listing-price').textContent = property.price;
+            document.getElementById('listing-description').textContent = property.description;
+
+            const features = document.getElementById('listing-features');
+            features.innerHTML = property.features.map(f => `<span class="feature-tag">${f}</span>`).join('');
+
+            const thumbnails = document.getElementById('thumbnail-grid');
+            thumbnails.innerHTML = property.media
+                .filter(item => item.type === 'image')
+                .map(item => `
+                    <div class="thumbnail">
+                        <img src="${item.src}" alt="Property thumbnail" onclick="document.getElementById('main-image').src = this.src">
+                    </div>
+                `).join('');
+
+            const calendar = document.getElementById('calendar');
+            calendar.innerHTML = '';
+            for (let i = 1; i <= 30; i++) {
+                const day = document.createElement('div');
+                day.className = `day ${property.availability.includes(`2025-10-${i.toString().padStart(2, '0')}`) ? 'available' : 'apartment'}`;
+                day.textContent = i;
+                calendar.appendChild(day);
+            }
+
+            const reviews = document.getElementById('reviews-container');
+            reviews.innerHTML = property.reviews.map(r => `
+                <div class="review">
+                    <div class="rating">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+                    <p>${r.comment}</p>
+                    <p><small>${r.user}</small></p>
+                </div>
+            `).join('');
+
+            document.getElementById('booking-status').value = property.status;
+
+            // Simulate booking progress
+            const availableDays = property.availability.length;
+            const totalDays = 30;
+            const progress = Math.round((availableDays / totalDays) * 100);
+            document.getElementById('booking-progress').textContent = `${progress}%`;
+            document.querySelector('.progress-fill').style.width = `${progress}%`;
+
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize
+        document.querySelectorAll('#filter-type, #filter-price, #filter-bedrooms, #filter-bathrooms, #filter-status').forEach(filter => {
+            filter.addEventListener('change', filterProperties);
+        });
+
+        renderProperties(properties);
+
+        // Attach event listeners to view buttons
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.view-btn-eye');
+            if (btn) {
+                const card = btn.closest('.property-card');
+                const index = Array.from(document.querySelectorAll('.property-card')).indexOf(card);
+                showMediaModal(properties[index].id);
+            }
+        });
+    </script>
+</body>
+</html>
