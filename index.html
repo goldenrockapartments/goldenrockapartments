@@ -1033,264 +1033,291 @@
         </footer>
     </main>
 
-    <script>
-        // Sample data
-        const properties = [
-            {
-                id: 1,
-                title: "Golden Rock Apartments 1",
-                location: "Golden Rock, Barbados",
-                price: "$225 BBD",
-                type: "apartment",
-                bedrooms: 1,
-                bathrooms: 1,
-                status: "available",
-                amenities: ["Wi-Fi", "Parking"],
-                media: [
-                    { type: "image", src: "1bedroom1.jpeg" },
-                    { type: "image", src: "1bedroom2.jpeg" },
-                    { type: "video", src: "1bedroomvid1.mp4" },
-                    { type: "video", src: "1bedroomvid2.mp4" }
-                ],
-                description: "Cozy one-bedroom apartment with modern amenities in Golden Rock.",
-                features: ["1 Bedroom", "1 Bathroom", "Short Term"],
-                availability: ["2025-10-10", "2025-10-11", "2025-10-12"],
-                reviews: [
-                    { rating: 4, comment: "Great location, very clean.", user: "Sarah M." }
-                ]
-            },
-            {
-                id: 2,
-                title: "Golden Rock Apartments 2",
-                location: "Golden Rock, Barbados",
-                price: "$300 BBD",
-                type: "apartment",
-                bedrooms: 2,
-                bathrooms: 1,
-                status: "available",
-                amenities: ["Wi-Fi", "Pool", "Parking"],
-                media: [
-                    { type: "image", src: "2bedroom1.jpeg" },
-                    { type: "image", src: "2bedroom2.jpeg" },
-                    { type: "image", src: "2bedroom3.jpeg" },
-                    { type: "image", src: "2bedroom4.jpeg" },
-                    { type: "video", src: "2bedroomvid.mp4" }
-                ],
-                description: "Spacious two-bedroom apartment with ocean views.",
-                features: ["2 Bedrooms", "1 Bathroom"],
-                availability: [],
-                reviews: [
-                    { rating: 5, comment: "Amazing stay!", user: "John D." }
-                ]
-            },
-            {
-                id: 3,
-                title: "Golden Rock Apartments 3",
-                location: "Golden Rock, Barbados",
-                price: "400-452 BBD",
-                type: "apartment",
-                bedrooms: 3,
-                bathrooms: 2,
-                status: "available",
-                amenities: ["Wi-Fi", "Gym"],
-                media: [
-                    { type: "image", src: "shortterm.png" },
-                    { type: "video", src: "shortterm.mp4" }
-                ],
-                description: "Modern one-bedroom apartment under maintenance, available soon.",
-                features: ["1 Bedroom", "1 Bathroom", "Short Term"],
-                availability: [],
-                reviews: []
-            }
-        ];
+   <script>
+    // Sample data – **ADD THE NEW OBJECT ABOVE TO THIS ARRAY**
+    const properties = [
+        {
+            id: 1,
+            title: "Golden Rock Apartments 1",
+            location: "Golden Rock, Barbados",
+            price: "$225 BBD",
+            type: "apartment",
+            bedrooms: 1,
+            bathrooms: 1,
+            status: "available",
+            amenities: ["Wi-Fi", "Parking"],
+            media: [
+                { type: "image", src: "1bedroom1.jpeg" },
+                { type: "image", src: "1bedroom2.jpeg" },
+                { type: "video", src: "1bedroomvid1.mp4" },
+                { type: "video", src: "1bedroomvid2.mp4" }
+            ],
+            description: "Cozy one-bedroom apartment with modern amenities in Golden Rock.",
+            features: ["1 Bedroom", "1 Bathroom", "Short Term"],
+            availability: ["2025-10-10", "2025-10-11", "2025-10-12"],
+            reviews: [
+                { rating: 4, comment: "Great location, very clean.", user: "Sarah M." }
+            ]
+        },
+        {
+            id: 2,
+            title: "Golden Rock Apartments 2",
+            location: "Golden Rock, Barbados",
+            price: "$300 BBD",
+            type: "apartment",
+            bedrooms: 2,
+            bathrooms: 1,
+            status: "available",
+            amenities: ["Wi-Fi", "Pool", "Parking"],
+            media: [
+                { type: "image", src: "2bedroom1.jpeg" },
+                { type: "image", src: "2bedroom2.jpeg" },
+                { type: "image", src: "2bedroom3.jpeg" },
+                { type: "image", src: "2bedroom4.jpeg" },
+                { type: "video", src: "2bedroomvid.mp4" }
+            ],
+            description: "Spacious two-bedroom apartment with ocean views.",
+            features: ["2 Bedrooms", "1 Bathroom"],
+            availability: [],
+            reviews: [
+                { rating: 5, comment: "Amazing stay!", user: "John D." }
+            ]
+        },
+        {
+            id: 3,
+            title: "Golden Rock Apartments 3",
+            location: "Golden Rock, Barbados",
+            price: "400-452 BBD",
+            type: "apartment",
+            bedrooms: 3,
+            bathrooms: 2,
+            status: "available",
+            amenities: ["Wi-Fi", "Gym"],
+            media: [
+                { type: "image", src: "shortterm.png" },
+                { type: "video", src: "shortterm.mp4" }
+            ],
+            description: "Modern one-bedroom apartment under maintenance, available soon.",
+            features: ["1 Bedroom", "1 Bathroom", "Short Term"],
+            availability: [],
+            reviews: []
+        },
+        // <<< NEW APARTMENT ADDED HERE >>>
+        {
+            id: 4,
+            title: "Dash Valley Hanson Heights",
+            location: "Dash Valley, St. George, Barbados",
+            price: "$350 BBD",
+            type: "apartment",
+            bedrooms: 2,
+            bathrooms: 2,
+            status: "available",
+            amenities: ["Wi-Fi", "Pool", "Parking", "Gym"],
+            media: [
+                { type: "image", src: "dashvalley1.jpeg" },
+                { type: "image", src: "dashvalley2.jpeg" },
+                { type: "video", src: "dashvalleyvid.mp4" }
+            ],
+            description: "Modern two-bedroom apartment in the quiet community of Dash Valley Hanson Heights.",
+            features: ["2 Bedrooms", "2 Bathrooms", "Pool Access", "Gym"],
+            availability: ["2025-11-15", "2025-11-16", "2025-11-20"],
+            reviews: [
+                { rating: 5, comment: "Spacious and peaceful!", user: "Michael P." }
+            ]
+        }
+    ];
 
-        // Navigation toggle
-        document.querySelector('.hamburger').addEventListener('click', () => {
-            document.querySelector('.nav-menu').classList.toggle('active');
-        });
+    // -------------------------------------------------
+    // (All the existing JavaScript below stays unchanged)
+    // -------------------------------------------------
+    // Navigation toggle
+    document.querySelector('.hamburger').addEventListener('click', () => {
+        document.querySelector('.nav-menu').classList.toggle('active');
+    });
 
-        // View toggle
-        document.querySelectorAll('.view-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const view = btn.dataset.view;
-                const container = document.getElementById('properties-container');
-                container.className = view === 'grid' ? 'properties-grid' : 'properties-list';
-            });
-        });
-
-        // Populate properties
-        function renderProperties(filteredProperties) {
+    // View toggle
+    document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const view = btn.dataset.view;
             const container = document.getElementById('properties-container');
-            container.innerHTML = '';
-            filteredProperties.forEach(property => {
-                const firstImage = property.media.find(media => media.type === 'image') || property.media[0];
-                const card = document.createElement('div');
-                card.className = 'property-card';
-                card.innerHTML = `
-                    <div class="property-image">
-                        <img src="${firstImage.src}" alt="${property.title}">
-                        <span class="property-badge">${property.type}</span>
-                        <span class="property-status">${property.status}</span>
-                        <div class="property-overlay">
-                            <h3>${property.title}</h3>
-                            <p><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
-                            <div class="property-features">
-                                ${property.features.map(feature => `<span class="feature">${feature}</span>`).join('')}
-                            </div>
+            container.className = view === 'grid' ? 'properties-grid' : 'properties-list';
+        });
+    });
+
+    // Populate properties
+    function renderProperties(filteredProperties) {
+        const container = document.getElementById('properties-container');
+        container.innerHTML = '';
+        filteredProperties.forEach(property => {
+            const firstImage = property.media.find(media => media.type === 'image') || property.media[0];
+            const card = document.createElement('div');
+            card.className = 'property-card';
+            card.innerHTML = `
+                <div class="property-image">
+                    <img src="${firstImage.src}" alt="${property.title}">
+                    <span class="property-badge">${property.type}</span>
+                    <span class="property-status">${property.status}</span>
+                    <div class="property-overlay">
+                        <h3>${property.title}</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
+                        <div class="property-features">
+                            ${property.features.map(feature => `<span class="feature">${feature}</span>`).join('')}
                         </div>
                     </div>
-                    <div class="property-info">
-                        <div class="property-price">${property.price}</div>
-                        <button class="view-btn-eye"><i class="fas fa-eye"></i> View Media</button>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
+                </div>
+                <div class="property-info">
+                    <div class="property-price">${property.price}</div>
+                    <button class="view-btn-eye"><i class="fas fa-eye"></i> View Media</button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
 
-        // Show media modal
-        function showMediaModal(propertyId) {
-            const property = properties.find(p => p.id === propertyId);
-            const modal = document.getElementById('media-modal');
-            const carousel = document.getElementById('modal-carousel');
-            carousel.innerHTML = property.media.map((item, index) => `
-                ${item.type === 'image' ?
-                    `<img src="${item.src}" alt="${property.title}" class="${index === 0 ? 'active' : ''}">` :
-                    `<video src="${item.src}" class="${index === 0 ? 'active' : ''}" controls autoplay muted></video>`
-                }
-            `).join('');
-            modal.style.display = 'flex';
-            const prevBtn = document.getElementById('modal-prev');
-            const nextBtn = document.getElementById('modal-next');
-            prevBtn.disabled = true;
-            nextBtn.disabled = property.media.length <= 1;
-
-            function updateCarousel(direction) {
-                const mediaElements = carousel.querySelectorAll('img, video');
-                let currentIndex = Array.from(mediaElements).findIndex(el => el.classList.contains('active'));
-                let newIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
-                if (newIndex >= 0 && newIndex < mediaElements.length) {
-                    mediaElements[currentIndex].classList.remove('active');
-                    mediaElements[currentIndex].pause && mediaElements[currentIndex].pause();
-                    mediaElements[newIndex].classList.add('active');
-                    mediaElements[newIndex].play && mediaElements[newIndex].play();
-                    prevBtn.disabled = newIndex === 0;
-                    nextBtn.disabled = newIndex === mediaElements.length - 1;
-                }
+    // Show media modal
+    function showMediaModal(propertyId) {
+        const property = properties.find(p => p.id === propertyId);
+        const modal = document.getElementById('media-modal');
+        const carousel = document.getElementById('modal-carousel');
+        carousel.innerHTML = property.media.map((item, index) => `
+            ${item.type === 'image' ?
+                `<img src="${item.src}" alt="${property.title}" class="${index === 0 ? 'active' : ''}">` :
+                `<video src="${item.src}" class="${index === 0 ? 'active' : ''}" controls autoplay muted></video>`
             }
-            prevBtn.onclick = () => updateCarousel('prev');
-            nextBtn.onclick = () => updateCarousel('next');
+        `).join('');
+        modal.style.display = 'flex';
+        const prevBtn = document.getElementById('modal-prev');
+        const nextBtn = document.getElementById('modal-next');
+        prevBtn.disabled = true;
+        nextBtn.disabled = property.media.length <= 1;
 
-            document.querySelector('.modal-close').onclick = () => {
+        function updateCarousel(direction) {
+            const mediaElements = carousel.querySelectorAll('img, video');
+            let currentIndex = Array.from(mediaElements).findIndex(el => el.classList.contains('active'));
+            let newIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
+            if (newIndex >= 0 && newIndex < mediaElements.length) {
+                mediaElements[currentIndex].classList.remove('active');
+                mediaElements[currentIndex].pause && mediaElements[currentIndex].pause();
+                mediaElements[newIndex].classList.add('active');
+                mediaElements[newIndex].play && mediaElements[newIndex].play();
+                prevBtn.disabled = newIndex === 0;
+                nextBtn.disabled = newIndex === mediaElements.length - 1;
+            }
+        }
+        prevBtn.onclick = () => updateCarousel('prev');
+        nextBtn.onclick = () => updateCarousel('next');
+
+        document.querySelector('.modal-close').onclick = () => {
+            modal.style.display = 'none';
+            carousel.querySelectorAll('video').forEach(video => video.pause());
+        };
+        modal.onclick = (e) => {
+            if (e.target === modal) {
                 modal.style.display = 'none';
                 carousel.querySelectorAll('video').forEach(video => video.pause());
-            };
-            modal.onclick = (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    carousel.querySelectorAll('video').forEach(video => video.pause());
-                }
-            };
-        }
-
-        // Filter properties
-        function filterProperties() {
-            const type = document.getElementById('filter-type').value;
-            const price = document.getElementById('filter-price').value;
-            const bedrooms = document.getElementById('filter-bedrooms').value;
-            const bathrooms = document.getElementById('filter-bathrooms').value;
-            const status = document.getElementById('filter-status').value;
-            let filtered = properties;
-            if (type) filtered = filtered.filter(p => p.type === type);
-            if (price) filtered = filtered.filter(p => {
-                const priceNum = parseInt(p.price.replace('$', '').split('/')[0]);
-                if (price === '0-100') return priceNum <= 100;
-                if (price === '100-200') return priceNum > 100 && priceNum <= 200;
-                if (price === '200+') return priceNum > 200;
-                return true;
-            });
-            if (bedrooms) filtered = filtered.filter(p => {
-                if (bedrooms === '3+') return p.bedrooms >= 3;
-                return p.bedrooms == bedrooms;
-            });
-            if (bathrooms) filtered = filtered.filter(p => {
-                if (bathrooms === '3+') return p.bathrooms >= 3;
-                return p.bathrooms == bathrooms;
-            });
-            if (status) filtered = filtered.filter(p => p.status === status);
-           
-            renderProperties(filtered);
-        }
-
-        // Show listing details
-        function showListingDetails(id) {
-            const property = properties.find(p => p.id === id);
-            document.getElementById('home').style.display = 'none';
-            document.getElementById('listings').style.display = 'none';
-            document.getElementById('appointment').style.display = 'none';
-            document.getElementById('map').style.display = 'none';
-            document.getElementById('listing-details').style.display = 'block';
-            const firstImage = property.media.find(media => media.type === 'image') || property.media[0];
-            document.getElementById('main-image').src = firstImage.src;
-            document.getElementById('listing-title').textContent = property.title;
-            document.getElementById('listing-location').textContent = `${property.location}`;
-            document.getElementById('listing-price').textContent = property.price;
-            document.getElementById('listing-description').textContent = property.description;
-            const features = document.getElementById('listing-features');
-            features.innerHTML = property.features.map(f => `<span class="feature-tag">${f}</span>`).join('');
-            const thumbnails = document.getElementById('thumbnail-grid');
-            thumbnails.innerHTML = property.media
-                .filter(item => item.type === 'image')
-                .map(item => `
-                    <div class="thumbnail">
-                        <img src="${item.src}" alt="Property thumbnail" onclick="document.getElementById('main-image').src = this.src">
-                    </div>
-                `).join('');
-            const calendar = document.getElementById('calendar');
-            calendar.innerHTML = '';
-            for (let i = 1; i <= 30; i++) {
-                const day = document.createElement('div');
-                day.className = `day ${property.availability.includes(`2025-10-${i.toString().padStart(2, '0')}`) ? 'available' : 'booked'}`;
-                day.textContent = i;
-                calendar.appendChild(day);
             }
-            const reviews = document.getElementById('reviews-container');
-            reviews.innerHTML = property.reviews.map(r => `
-                <div class="review">
-                    <div class="rating">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
-                    <p>${r.comment}</p>
-                    <p><small>${r.user}</small></p>
+        };
+    }
+
+    // Filter properties
+    function filterProperties() {
+        const type = document.getElementById('filter-type').value;
+        const price = document.getElementById('filter-price').value;
+        const bedrooms = document.getElementById('filter-bedrooms').value;
+        const bathrooms = document.getElementById('filter-bathrooms').value;
+        const status = document.getElementById('filter-status').value;
+        let filtered = properties;
+        if (type) filtered = filtered.filter(p => p.type === type);
+        if (price) filtered = filtered.filter(p => {
+            const priceNum = parseInt(p.price.replace('$', '').split('/')[0]);
+            if (price === '0-100') return priceNum <= 100;
+            if (price === '100-200') return priceNum > 100 && priceNum <= 200;
+            if (price === '200+') return priceNum > 200;
+            return true;
+        });
+        if (bedrooms) filtered = filtered.filter(p => {
+            if (bedrooms === '3+') return p.bedrooms >= 3;
+            return p.bedrooms == bedrooms;
+        });
+        if (bathrooms) filtered = filtered.filter(p => {
+            if (bathrooms === '3+') return p.bathrooms >= 3;
+            return p.bathrooms == bathrooms;
+        });
+        if (status) filtered = filtered.filter(p => p.status === status);
+       
+        renderProperties(filtered);
+    }
+
+    // Show listing details
+    function showListingDetails(id) {
+        const property = properties.find(p => p.id === id);
+        document.getElementById('home').style.display = 'none';
+        document.getElementById('listings').style.display = 'none';
+        document.getElementById('appointment').style.display = 'none';
+        document.getElementById('map').style.display = 'none';
+        document.getElementById('listing-details').style.display = 'block';
+        const firstImage = property.media.find(media => media.type === 'image') || property.media[0];
+        document.getElementById('main-image').src = firstImage.src;
+        document.getElementById('listing-title').textContent = property.title;
+        document.getElementById('listing-location').textContent = `${property.location}`;
+        document.getElementById('listing-price').textContent = property.price;
+        document.getElementById('listing-description').textContent = property.description;
+        const features = document.getElementById('listing-features');
+        features.innerHTML = property.features.map(f => `<span class="feature-tag">${f}</span>`).join('');
+        const thumbnails = document.getElementById('thumbnail-grid');
+        thumbnails.innerHTML = property.media
+            .filter(item => item.type === 'image')
+            .map(item => `
+                <div class="thumbnail">
+                    <img src="${item.src}" alt="Property thumbnail" onclick="document.getElementById('main-image').src = this.src">
                 </div>
             `).join('');
-            document.getElementById('booking-status').value = property.status;
-            const availableDays = property.availability.length;
-            const totalDays = 30;
-            const progress = Math.round((availableDays / totalDays) * 100);
-            document.getElementById('booking-progress').textContent = `${progress}%`;
-            document.querySelector('.progress-fill').style.width = `${progress}%`;
-            window.scrollTo(0, 0);
+        const calendar = document.getElementById('calendar');
+        calendar.innerHTML = '';
+        for (let i = 1; i <= 30; i++) {
+            const day = document.createElement('div');
+            day.className = `day ${property.availability.includes(`2025-11-${i.toString().padStart(2, '0')}`) ? 'available' : 'booked'}`;
+            day.textContent = i;
+            calendar.appendChild(day);
         }
+        const reviews = document.getElementById('reviews-container');
+        reviews.innerHTML = property.reviews.map(r => `
+            <div class="review">
+                <div class="rating">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+                <p>${r.comment}</p>
+                <p><small>${r.user}</small></p>
+            </div>
+        `).join('');
+        document.getElementById('booking-status').value = property.status;
+        const availableDays = property.availability.length;
+        const totalDays = 30;
+        const progress = Math.round((availableDays / totalDays) * 100);
+        document.getElementById('booking-progress').textContent = `${progress}%`;
+        document.querySelector('.progress-fill').style.width = `${progress}%`;
+        window.scrollTo(0, 0);
+    }
 
-        // Initialize
-        document.querySelectorAll('#filter-type, #filter-price, #filter-bedrooms, #filter-bathrooms, #filter-status').forEach(filter => {
-            filter.addEventListener('change', filterProperties);
-        });
-        renderProperties(properties);
+    // Initialize
+    document.querySelectorAll('#filter-type, #filter-price, #filter-bedrooms, #filter-bathrooms, #filter-status').forEach(filter => {
+        filter.addEventListener('change', filterProperties);
+    });
+    renderProperties(properties);
 
-        // Attach event listeners to view buttons
-        document.addEventListener('click', (e) => {
-            const btn = e.target.closest('.view-btn-eye');
-            if (btn) {
-                const card = btn.closest('.property-card');
-                const index = Array.from(document.querySelectorAll('.property-card')).indexOf(card);
-                showMediaModal(properties[index].id);
-            }
-        });
-    </script>
+    // Attach event listeners to view buttons
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.view-btn-eye');
+        if (btn) {
+            const card = btn.parentElement.parentElement;
+            const index = Array.from(document.querySelectorAll('.property-card')).indexOf(card);
+            showMediaModal(properties[index].id);
+        }
+    });
+</script>
 </body>
 </html>
+
 
 
 
